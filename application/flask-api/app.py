@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "🚀 DR Automation API is Running"
+    return "🚀 DR Automation API is Running (v2)"
 
 @app.route("/health")
 def health():
