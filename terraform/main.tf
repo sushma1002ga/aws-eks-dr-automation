@@ -113,3 +113,18 @@ resource "aws_route_table_association" "private_b" {
   subnet_id      = aws_subnet.private_b.id
   route_table_id = aws_route_table.private.id
 }
+module "iam" {
+  source = "./modules/iam"
+}
+module "eks" {
+
+  source = "./modules/eks"
+
+  cluster_role_arn = module.iam.cluster_role_arn
+  node_role_arn    = module.iam.node_role_arn
+
+  subnet_ids = [
+    aws_subnet.private_a.id,
+    aws_subnet.private_b.id
+  ]
+}
